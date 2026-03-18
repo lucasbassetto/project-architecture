@@ -50,6 +50,21 @@ coverage/
 # vercel
 .vercel
 
+# markdown files (except README)
+*.md
+!README.md
+
+# images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+images/
+__MACOSX/
+
 # misc
 *.pem
 .claude/

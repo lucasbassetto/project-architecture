@@ -526,3 +526,90 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 3. **Serviço 2 (Urbanismo):** Vista aérea de planejamento urbano — buscar "urban planning aerial city"
 4. **Serviço 3 (Arquitetura):** Edifício residencial contemporâneo — buscar "contemporary residential building"
 5. **Background textures (opcional):** Concreto ou mármore sutil — buscar "concrete texture minimal"
+
+---
+
+## REFERÊNCIAS AWWWARDS — DIRETRIZES VISUAIS PREMIUM
+
+> Baseado em análise de sites premiados na categoria Architecture do Awwwards.
+> Documento completo: `awwwards-referencias.md`
+
+### Sites de Referência
+
+| Site | Nota | Destaques |
+|------|------|-----------|
+| **Telha Clarke** (telhaclarke.com.au) | 7.6 | Hover interativo, parallax grid, page transitions, loader animation |
+| **Studio Dado** (studiodado.com) | 7.46 | Branding animation, tons terrosos (similar ao gold #C9A96E), tipografia dominante |
+| **Springs** (springs.estate) | 7.23 | Gallery scroll, water animation, map interativo, luxury real estate |
+| **Cargo Architecture** (cargoarchitecture.ca) | Nominee | Portfolio grid, whitespace generoso, navegação mínima |
+| **Nine To Five** (9to5studio.it) | Nominee | Hero tipográfico espalhado, scroll fluido, GSAP animations |
+
+### Padrões Awwwards a Implementar
+
+#### 1. Hero Fullscreen (100vh)
+- Hero deve ocupar toda a viewport inicial
+- Text reveal cinematográfico: texto sobe com `overflow: hidden` (mask/curtain effect)
+- Imagem com parallax via Framer Motion `useScroll` + `useTransform`
+- Escala tipográfica ousada: heading `clamp(3rem, 6vw, 5rem)` ou maior
+
+#### 2. Vocabulário de Animações Expandido
+Não usar apenas `fadeInUp` em tudo. Variar entre:
+- **Text mask reveal:** `overflow: hidden` + `translateY(100%)` → `translateY(0)` nos headings
+- **Image scale-in:** imagem em container com `overflow: hidden`, scale `1.15` → `1.0` no scroll
+- **Line draw:** linhas decorativas com `scaleX(0)` → `scaleX(1)` com `transform-origin: left`
+- **Stagger refinado:** delays variados (0.05s-0.15s) entre elementos filhos
+- **Parallax sutil:** imagens movendo a 0.5x-0.8x da velocidade do scroll
+- **Counter animation:** números contando de 0 ao valor final com easing
+
+#### 3. Micro-interações Premium
+- **Botões:** pseudo-elemento `::before` com fill animation (width 0% → 100%) no hover
+- **Links de navegação:** underline reveal animado (`scaleX(0)` → `scaleX(1)`)
+- **Cards:** `translateY(-4px)` + sombra expandida + borda gold no hover
+- **Ícones:** leve rotação ou scale (1.05) no hover do card pai
+- **Custom cursor (opcional):** dot gold que escala em elementos clicáveis (desktop only)
+
+#### 4. Loading/Intro Animation
+- Overlay #1A1A1A cobrindo a tela
+- Logo "LAR" aparece com fade + scale sutil
+- Overlay sobe com `clipPath` ou `translateY(-100%)`
+- Duração: 2-2.5s total
+- Usar `AnimatePresence` do Framer Motion
+
+#### 5. Smooth Scroll
+- Adicionar `lenis` (~3KB) para scroll com inércia premium
+- Alternativa: CSS `scroll-behavior: smooth` + Framer Motion scroll-linked animations
+
+#### 6. Image Treatment
+- Todas as imagens em container com `overflow: hidden`
+- Scale-in reveal: imagem começa maior (scale 1.1-1.15) e ajusta no scroll
+- Overlay gradiente sutil para legibilidade de texto sobre imagem
+- Aspect ratios consistentes: 16:9 (landscape), 3:4 (portrait), 1:1 (cards)
+
+#### 7. Escala Tipográfica Ousada
+- Hero h1: `clamp(3rem, 6vw, 5rem)` — maior que o atual
+- Section headings: `clamp(2.5rem, 5vw, 4rem)`
+- Números decorativos (process steps): `clamp(4rem, 8vw, 7rem)`, opacidade 10-15%
+- Letter-spacing negativo nos headings grandes: `-0.03em`
+
+#### 8. Layout Assimétrico Intencional
+- Serviços: em vez de 50/50 simétrico, usar 55/45 ou 60/40 com imagem maior
+- Grid de cards: variação de tamanhos (1 card grande + 2 menores)
+- Offsets verticais: elementos levemente desalinhados para dinamismo
+
+#### 9. Elementos Decorativos Sutis
+- Linhas finas (#E5E2DC) como separadores entre seções
+- Linha accent (#C9A96E, 40-60px) como marcador de seção
+- Números ordinais grandes e semi-transparentes ("01", "02") nos processos
+- Aspas decorativas oversized nos depoimentos
+
+#### 10. Transições entre Seções
+- Fundo alternando: branco → cream → branco → dark (ritmo visual)
+- Dividers animados entre seções (line draw on scroll)
+- Overlap sutil: elementos da próxima seção começam a aparecer antes
+
+### Stack Técnico (Sem Mudanças)
+- **Next.js 15** (App Router, static export)
+- **Tailwind CSS v4** (utility-first, design tokens via CSS variables)
+- **Framer Motion** (`useScroll`, `useTransform`, `AnimatePresence`, `motion`)
+- **Lucide React** (ícones line-style)
+- **Opcional:** `lenis` (~3KB) para smooth scroll premium
