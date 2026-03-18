@@ -198,10 +198,10 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 
 #### Coluna Esquerda
 - **Eyebrow:** "ARQUITETURA ESTRATÉGICA" — uppercase, Inter 600, 0.75rem, cor #C9A96E, letter-spacing 0.15em
-- **Título h1:** "Arquitetura que gera *identidade* e valor de mercado"
+- **Título h1:** "Seu empreendimento merece uma arquitetura que *vende*"
   - Playfair Display 400, clamp(2.5rem, 5vw, 4rem)
-  - A palavra "identidade" em itálico (Playfair Display Italic) para ênfase elegante
-- **Subtítulo:** "Há mais de 30 anos, unimos visão estratégica e design autoral para criar empreendimentos que se diferenciam — do estudo de viabilidade à entrega do projeto."
+  - A palavra "vende" em itálico (Playfair Display Italic) + cor gold (#C9A96E) para ênfase elegante
+- **Subtítulo:** "Há 30 anos, criamos projetos que diferenciam incorporadoras no mercado — com estudo de viabilidade antes do primeiro traço e design autoral que gera identidade."
   - Inter 400, #5C5C5C, 1.125rem, max-width 500px, line-height 1.8
 - **CTA:** "AGENDE UMA CONVERSA"
   - Botão retangular, #C9A96E bg, branco texto, uppercase, letter-spacing 0.1em
@@ -256,19 +256,19 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 
 #### Cards (grid 2x2)
 
-**Card 1: Estudo de Viabilidade Integrado**
+**Card 1: Investimento seguro desde o dia zero**
 - Ícone: linha fina de gráfico/análise (Lucide: BarChart3)
 - Descrição: "Analisamos viabilidade técnica e financeira antes do primeiro traço. Seu investimento começa seguro."
 
-**Card 2: Leitura de Território**
+**Card 2: Projetos que fazem sentido no contexto**
 - Ícone: linha fina de mapa/bússola (Lucide: Compass)
 - Descrição: "Lemos o contexto urbano, cultural e econômico para projetar com precisão e relevância."
 
-**Card 3: Arquitetura Autoral**
+**Card 3: Empreendimentos que se vendem pela fachada**
 - Ícone: linha fina de cubo/forma geométrica (Lucide: Box)
 - Descrição: "Projetos com identidade própria que geram valor simbólico e diferenciação no mercado."
 
-**Card 4: Parceria Full-Service**
+**Card 4: Um parceiro do estudo à entrega**
 - Ícone: linha fina de setas conectadas (Lucide: ArrowRightLeft)
 - Descrição: "Do estudo de viabilidade ao projeto final. Um parceiro em todas as etapas."
 
@@ -311,6 +311,70 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 #### Animações
 - Cada serviço: fade-in-up on scroll
 - Imagens: leve parallax (velocidade 0.95)
+
+---
+
+### Seção 4.5: Portfólio de Projetos
+
+**Layout:** Grid filtrado por categorias com painel de detalhes expansível
+**Background:** #FFFFFF
+**Posição:** Entre Serviços e Como Trabalhamos
+
+#### Header
+- **Eyebrow:** "PORTFÓLIO"
+- **Título h2:** "Projetos que geram *identidade*"
+  - Playfair Display 400, italic + gold (#C9A96E) na palavra "identidade"
+
+#### Filtro de Categorias
+- Barra horizontal com 5 tabs: **TODOS** | **CASAS** | **COMÉRCIOS** | **INTERIORES** | **EDIFÍCIOS**
+- Tab ativa: texto #1A1A1A + underline animado gold (#C9A96E, 2px) que desliza via Framer Motion `layoutId`
+- Tab inativa: texto #7A7A7A, hover → #1A1A1A
+- Estilo: Inter 600, 0.75rem, uppercase, letter-spacing 0.15em
+- Mobile: scroll horizontal com scrollbar escondida
+
+#### Grid de Thumbnails (3 colunas)
+- CSS Grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, gap 1rem
+- Cada thumbnail:
+  - Container overflow-hidden, aspect-ratio 4:3
+  - Hover: imagem scale 1.0 → 1.08 (transition 0.5s)
+  - Overlay escuro (rgba(0,0,0,0.3)) aparece no hover
+  - Nome do projeto revelado no hover (branco, Playfair, bottom-left)
+  - Tag de categoria no hover (eyebrow gold, top-left)
+  - Projeto selecionado: ring gold (2px #C9A96E)
+- AnimatePresence para transição suave ao filtrar categorias
+- Stagger entrance animation
+
+#### Painel de Detalhes (expansível)
+- Abre abaixo do grid ao clicar em um projeto
+- Animação: height 0 → auto + opacity (spring physics)
+- Layout 2 colunas (desktop):
+  - **Esquerda (38%):** nome do projeto (Playfair h3), tag de categoria (eyebrow), descrição (Inter body), linha gold accent
+  - **Direita (62%):** galeria horizontal scroll (snap-x snap-mandatory)
+- Galeria:
+  - Imagens em aspect-ratio 16:9 com overflow-hidden
+  - Navegação: setas esquerda/direita + counter "01 / 12"
+  - Scrollbar escondida
+- Botão fechar (X) no topo-direito
+- Scroll automático até o painel ao abrir
+- Mobile: empilha verticalmente — info topo, galeria full-width abaixo
+- Background: #FAFAF7, borda-top #E5E2DC
+
+#### Projetos (20 total)
+
+| Categoria | Projetos |
+|-----------|----------|
+| **Casas** | Casa LF, Casa PN |
+| **Interiores** | Apartamento MN, Dell Anno |
+| **Comércios** | Box One Fitness, Carnívoros, Casablanca Hall, Colli Bike, Country Club Complexo Piscinas, Fabrílo Rosa e Trovão Advogados, Grupo GTFoods, Jardins de Monet Centro de Esportes, Jardins de Monet Salão de Festas |
+| **Edifícios** | 54 Park Square, Condomínio Villagio Bourbon, Edifício El Cielo, Edifício Le Monde, Edifício Unikue Marechal, Edifício Vital, TAJ Condomínio Resort |
+
+*Imagens reais da empresa em `public/images/portfolio/` (uma subpasta por projeto)*
+
+#### Animações
+- Filtro: underline gold desliza com shared layout animation
+- Grid: AnimatePresence com fade + scale (0.96 → 1.0) ao filtrar
+- Painel: spring height animation (stiffness 300, damping 35)
+- Galeria: scroll horizontal com snap
 
 ---
 
@@ -425,8 +489,8 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 **Texto:** #FAFAF7
 
 #### Conteúdo
-- **Título h2:** "Seu próximo empreendimento merece uma arquitetura com *propósito*"
-  - Playfair Display 400, branco, italic na palavra "propósito"
+- **Título h2:** "Seu próximo empreendimento merece *mais* que plantas eficientes"
+  - Playfair Display 400, branco, italic na palavra "mais"
 - **Lista de benefícios:**
   - ✓ Mais de 30 anos de experiência e visão contemporânea
   - ✓ Estudo de viabilidade integrado ao processo
@@ -464,6 +528,9 @@ Crie uma landing page premium e minimalista para a Lar Arquitetura, um escritór
 
 **Q5:** "Vocês trabalham com projetos residenciais?"
 **A5:** "Nosso foco principal é em incorporadoras e investidores, mas avaliamos cada oportunidade. Entre em contato para conversarmos sobre seu projeto."
+
+**Q6:** "O investimento em arquitetura autoral é mais alto?"
+**A6:** "Nosso processo integrado elimina retrabalhos e surpresas. Incorporadoras que investem em identidade arquitetônica reportam maior velocidade de vendas e valorização do m². O retorno justifica o investimento."
 
 - Accordion: borda-bottom #E5E2DC, chevron à direita
 - Transição suave (height 0.3s ease)
